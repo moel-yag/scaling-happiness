@@ -21,6 +21,8 @@ int execute_builtin(t_command *cmd)
         return (ft_export(&g_data.env_list, cmd->arguments));
     else if (ft_strcmp(cmd->command, "env") == 0)
         return (ft_env(g_data.env_list, cmd->arguments));
+    if (strcmp(cmd->command, "unset") == 0)
+        return(ft_unset(&g_data.env_list, cmd->arguments));
     return (-1);
 }
 
