@@ -61,7 +61,7 @@ void print_env_sorted(t_env *env_list)
     }
     arr = malloc(count * sizeof(t_env *));
     if (!arr)
-        return;
+        return ;
     temp = env_list;
     i = 0;
     while (i < count)
@@ -89,7 +89,10 @@ void print_env_sorted(t_env *env_list)
     i = 0;
     while (i < count)
     {
-        printf("declare -x %s=\"%s\"\n", arr[i]->name, arr[i]->value);
+        if (arr[i]->value)
+            printf("declare -x %s=\"%s\"\n", arr[i]->name, arr[i]->value);
+        else
+            printf("declare -x %s\n", arr[i]->name);
         i++;
     }
     free(arr);

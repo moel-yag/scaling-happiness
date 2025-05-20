@@ -44,7 +44,8 @@ int validate_and_split(char *arg, char **name, char **value)
     else
     {
         *name = ft_strdup(arg);
-        *value = ft_strdup("");
+        // *value = ft_strdup("");
+        *value = NULL;
     }
     if (!is_valid_env_name(*name))
     {
