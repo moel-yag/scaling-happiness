@@ -84,3 +84,39 @@ void update_or_add_env(t_env **env, char *name, char *value)
     }
     lst_add_env(env, new);
 }
+
+int ft_unset(t_env **env, char **args)
+{
+    int i = 1;
+    t_env *current;
+    t_env *prev;
+    t_env *tmp;
+
+    if (!args)
+        return (0);
+
+    while (args[i])
+    {
+        prev = NULL;
+        current = *env;
+        while (current)
+        {
+            if (ft_strcmp(current->name, args[i]) == 0)
+            {
+                tmp = current->next;
+                if (prev)
+                    prev->next = tmp;
+                else
+                    *env = tmp;
+                free(current->name);
+                free(current->value);
+                free(current);
+                break;
+            }
+            prev = current;
+            current = current->next;
+        }
+        i++;
+    }
+    return (0);
+}
